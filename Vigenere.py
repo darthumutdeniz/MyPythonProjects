@@ -2,7 +2,7 @@ import datetime
 
 def Vigenere_Sifrele(key, text, bool):
 
-    alfabe = ["a","b","c","ç","d","e","f","g","ğ","h","ı","i","j","k","l","m","n","o","ö","p","r","s","ş","t","u","ü","v","y","z"]
+    alfabe = "abcçdefgğhıijklmnoöprsştuüvyz"
     lowerText = text.lower()
     lowerKey = key.lower() 
     anahtarNums = []
@@ -28,19 +28,21 @@ def Vigenere_Sifrele(key, text, bool):
             textNums.append(sifre_harf + ".")
 
     #Anahtarın değeri ile metininkini topluyoruz.
+    j = 0
     for i in range(len(textNums)):
         if textNums[i] in range(len(alfabe)):
             newTextNums.append(
                 (int(textNums[i]) + (int(bool) *
-                    (int(anahtarNums[i % len(anahtarNums)]))))
+                    (int(anahtarNums[j % len(anahtarNums)]))))
                         % len(alfabe))
+            j += 1
         else:
             newTextNums.append(textNums[i])
 
     #Yeni metnin sayısal değerini harflere çeviriyoruz.
     for i in range(len(newTextNums)):
         if newTextNums[i] in range(len(alfabe)): 
-            if text[i%len(text)] == lowerText[i]:
+            if text[i] == lowerText[i]:
                 newText += alfabe[newTextNums[i]]
             else:
                 newText += alfabe[newTextNums[i]].upper()

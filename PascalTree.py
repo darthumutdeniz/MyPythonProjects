@@ -10,7 +10,6 @@ def PascalTree(n):
                 pascallines[i].append(newNum)
     return pascallines
 
-
 n = int(input("Kaç satır"))
 tree = PascalTree(n)
 for i in range(0, len(tree)):
